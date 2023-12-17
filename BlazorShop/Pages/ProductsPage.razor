@@ -1,0 +1,12 @@
+﻿@page "/products"
+<h3>Список товаров</h3>
+
+@foreach(var product in _cat.GetProducts())
+{
+	<p>Название продукта:   </p>
+}
+
+@code {
+	private Catalog _cat = new();
+
+}

@@ -1,0 +1,29 @@
+﻿@page "/"
+
+<PageTitle>Главная страница</PageTitle>
+
+<h1>Добро пожаловать в интернет магазин "Online shop"</h1>
+
+<p>текущее местное время: @time</p>
+
+@code {
+    private DateTime time;
+    protected override void OnInitialized()
+    {
+        time = DateTime.Now;
+        base.OnInitialized();
+        Updatetime();
+
+    }
+    async Task Updatetime()
+    {
+        var timer = new PeriodicTimer(TimeSpan.FromSeconds(1));
+        while (await timer.WaitForNextTickAsync())
+        {
+            time = DateTime.Now;
+            StateHasChanged();
+
+        }
+    }
+
+}
