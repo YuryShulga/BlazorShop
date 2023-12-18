@@ -6,4 +6,20 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Content Remove="Pages\AddProductPage.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Pages\AddProductPage.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Pages\AddProductPage.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Pages\AddProductPage.razor" />
+  </ItemGroup>
+
 </Project>
