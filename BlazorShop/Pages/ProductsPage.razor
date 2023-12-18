@@ -1,12 +1,15 @@
 ﻿@page "/products"
+
+@inject Catalog Catalog
+
 <h3>Список товаров</h3>
 
-@foreach(var product in _cat.GetProducts())
+@foreach(var product in Catalog.GetProducts())
 {
-	<p>Название продукта:   </p>
+	<p>id продукта:  @product.Id </p>
+	<p>Название продукта:  @product.Name </p>
+	<p>Цена продукта:  @product.Price </p>
+	<br>
+	<br>
 }
 
-@code {
-	private Catalog _cat = new();
-
-}
