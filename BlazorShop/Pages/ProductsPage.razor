@@ -4,12 +4,10 @@
 
 <h3>Список товаров</h3>
 
-@foreach(var product in Catalog.GetProducts())
+@foreach (var product in Catalog.GetProducts())
 {
 	<p>id продукта:  @product.Id </p>
 	<p>Название продукта:  @product.Name </p>
 	<p>Цена продукта:  @product.Price </p>
 	<br>
-	<br>
 }
-

@@ -1,7 +1,78 @@
 ﻿@page "/add_product"
+@inject Catalog Catalog
 
-<h3>AddProductPage</h3>
+<h3>@_pageTitle</h3>
+
+<EditForm Model="_model" OnValidSubmit="AddProduct">
+    <DataAnnotationsValidator />
+    <br />
+    Название продукта: <InputText @bind-Value="_model.Name" />
+    <br />
+    <br />
+    Цена: <InputText  @bind-Value="_model.Price" type="number"/>
+    @* Красивее оборачивать в table *@
+    <br />
+    <br /> <input type="submit" value="Добавить">
+    <ValidationSummary />
+</EditForm>
+<h4 style="color:red">@_errorMessage</h4>
 
 @code {
 
+    private string _pageTitle = "Добавление нового продукта в базу";
+    private string _errorMessage = "";
+    private StringProductModel _model = new();
+    private void AddProduct()
+    {
+        if (_model.Name == null)
+        {
+            _errorMessage = "Введите название продукта!";
+            StateHasChanged();
+            return;
+        }
+        decimal price;
+        try
+        {
+            price = Convert.ToDecimal(_model.Price);
+        }
+        catch (FormatException)
+        {
+            _errorMessage = "Неправильно ";
+            StateHasChanged();
+            return;
+        }
+        if (price == 0)
+        {
+            _errorMessage = "Введите цену продукта!";
+            StateHasChanged();
+            return;
+        }
+        if (_errorMessage != "")
+        {
+            _errorMessage = "";
+            StateHasChanged();
+        }
+        var products = Catalog.GetProducts();
+        int maxId = 0;
+        foreach (var product in products)
+        {
+            if (product.Id > maxId)
+            {
+                maxId = product.Id;
+            }
+        }
+        maxId++;
+        Catalog.AddProduct(new Product { Id = maxId, Name = _model.Name, Price = price});
+        _model.Name = null;
+        _model.Price = "";
+        StateHasChanged();
+    }
+    public class StringProductModel
+    {
+
+        public string Name { get; set; }
+
+        public string Price { get; set; }
+
+    }
 }

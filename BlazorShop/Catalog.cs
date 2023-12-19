@@ -10,6 +10,11 @@
         public IReadOnlyCollection<Product> GetProducts() { 
             return products;
         }
+        public void AddProduct(Product product)
+        {
+            products.Add(product);
+            
+        }
     }
     public class Product 
     { 
