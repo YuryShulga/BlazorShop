@@ -24,33 +24,25 @@
     private StringProductModel _model = new();
     private void AddProduct()
     {
-        if (_model.Name == null)
+        if (_model.Name == null || _model.Name == "")
         {
             _errorMessage = "Введите название продукта!";
-            StateHasChanged();
             return;
         }
-        decimal price;
-        try
+        if (_model.Price == "")
         {
-            price = Convert.ToDecimal(_model.Price);
-        }
-        catch (FormatException)
-        {
-            _errorMessage = "Неправильно ";
-            StateHasChanged();
+            _errorMessage = "Введите цену продукта!";
             return;
         }
+        decimal price = Convert.ToDecimal(_model.Price); ;
         if (price == 0)
         {
             _errorMessage = "Введите цену продукта!";
-            StateHasChanged();
             return;
         }
         if (_errorMessage != "")
         {
             _errorMessage = "";
-            StateHasChanged();
         }
         var products = Catalog.GetProducts();
         int maxId = 0;
@@ -63,9 +55,8 @@
         }
         maxId++;
         Catalog.AddProduct(new Product { Id = maxId, Name = _model.Name, Price = price});
-        _model.Name = null;
+        _model.Name = "";
         _model.Price = "";
-        StateHasChanged();
     }
     public class StringProductModel
     {
