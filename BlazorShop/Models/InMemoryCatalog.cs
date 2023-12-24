@@ -1,6 +1,6 @@
-﻿namespace BlazorShop
+﻿namespace BlazorShop.Models
 {
-    public class Catalog
+    public class InMemoryCatalog : ICatalog
     {
         private readonly List<Product> products = new()
         {
@@ -16,11 +16,5 @@
             
         }
     }
-    public class Product 
-    { 
-        public int Id { get; set;}
-        public string Name { get; set;}
-
-        public decimal Price { get; set;}
-    }
+    
 }

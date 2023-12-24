@@ -1,4 +1,5 @@
 using BlazorShop;
+using BlazorShop.Models;
 using BlazorShop.Data;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
@@ -10,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
-builder.Services.AddSingleton<Catalog>();
+builder.Services.AddSingleton<ICatalog, InMemoryCatalog>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
