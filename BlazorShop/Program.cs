@@ -4,6 +4,7 @@ using BlazorShop.Data;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,10 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.AddSingleton<ICatalog, InMemoryCatalog>();
 builder.Services.AddTransient<ITime, UTCTime>();
+builder.Services.AddDbContext<AppDbContext>(options =>
+{
+    options.UseSqlite(builder.Configuration.GetConnectionString("AppDb"));
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

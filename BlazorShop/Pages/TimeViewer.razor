@@ -1,6 +1,6 @@
 ﻿@page "/TimeViewer"
 @using BlazorShop.Models
-@inject ITime UTCTime
+@inject ITime Time
 
 <h3>TimeViewer</h3>
 
@@ -31,10 +31,10 @@
     }
 </p>
 
-<h3>вывод времени: @UTCTime.GetTime().TimeOfDay</h3>
+<h3>вывод времени: @Time.GetTime().TimeOfDay</h3>
 
 
 
 @code {
-
+    
 }
