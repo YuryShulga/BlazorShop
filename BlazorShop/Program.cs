@@ -12,6 +12,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.AddSingleton<ICatalog, InMemoryCatalog>();
+builder.Services.AddTransient<ITime, UTCTime>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
