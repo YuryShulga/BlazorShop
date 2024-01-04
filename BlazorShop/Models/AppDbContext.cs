@@ -2,15 +2,16 @@
 
 namespace BlazorShop.Models
 {
-    public class AppDbContext : DbContext
+    public class DbContextSQLite : DbContext
     {
         //Список таблиц:
         public DbSet<Product> Products { get; set; }
 
-        public AppDbContext(
-            DbContextOptions<AppDbContext> options)
+        public DbContextSQLite(
+            DbContextOptions<DbContextSQLite> options)
             : base(options)
         {
+            Database.EnsureCreated();
         }
     }
 

@@ -12,9 +12,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
-builder.Services.AddSingleton<ICatalog, InMemoryCatalog>();
+//builder.Services.AddSingleton<ICatalog, InMemoryCatalog>();
+builder.Services.AddTransient<ICatalog, CatalogSQLite>();
 builder.Services.AddTransient<ITime, UTCTime>();
-builder.Services.AddDbContext<AppDbContext>(options =>
+builder.Services.AddDbContext<DbContextSQLite>(options =>
 {
     options.UseSqlite(builder.Configuration.GetConnectionString("AppDb"));
 });
