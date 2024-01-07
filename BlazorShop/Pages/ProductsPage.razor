@@ -4,6 +4,7 @@
 
 @inject ICatalog Catalog
 
+
 <h3>Список товаров</h3>
 
 @foreach (var product in Catalog.GetProducts())
@@ -12,4 +13,12 @@
 	<p>Название продукта:  @product.Name </p>
 	<p>Цена продукта:  @product.Price </p>
 	<br>
+}
+
+
+
+@code{
+	
+	
+	
 }

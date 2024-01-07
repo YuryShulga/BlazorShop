@@ -14,6 +14,8 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
 //builder.Services.AddSingleton<ICatalog, InMemoryCatalog>();
 builder.Services.AddTransient<ICatalog, CatalogSQLite>();
+builder.Services.AddSingleton<ISendMessage, MySendEmailMessage>();
+
 builder.Services.AddTransient<ITime, UTCTime>();
 builder.Services.AddDbContext<DbContextSQLite>(options =>
 {
