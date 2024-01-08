@@ -1,12 +1,28 @@
-﻿@page "/sendEmail"
+﻿@page "/send_email"
+@using BlazorShop.Models
 @inject ISendMessage SendMessageObject
 <h3>SendEmail</h3>
 
-@code {
-	protected override void OnInitialized()
-	{
-		base.OnInitialized();
+<EditForm Model="_emailModel" OnValidSubmit="OnSendEmail">
+    <DataAnnotationsValidator />
+    <br />
+    Тема письма:
+    <br />
+    <InputText @bind-Value="_emailModel.letterSubject" />
+    <br />
+    Текст для отправки:
+    <br />
+    <InputTextArea @bind-Value="_emailModel.letterBody" />
+    <br />
+    <br /> <input type="submit" value="Отправить">
+    <ValidationSummary />
+</EditForm>
 
-		//mySendMessageObject.SaveParamsObjectToFile();
-	}
+@code {
+    //mySendMessageObject.SaveParamsObjectToFile();
+    private SendEmailDataModel _emailModel = new();
+    private void OnSendEmail()
+    {
+        
+    }
 }
